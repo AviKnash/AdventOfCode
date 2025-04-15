@@ -19,10 +19,24 @@ func main() {
 	check(err)
 	fmt.Println(string(data))
 	floor := findFloor(data)
-	fmt.Println(floor)
+	fmt.Println(*floor)
 }
 
-func findFloor(data []byte) int {
+func findFloor(data []byte) *int {
+	var initialFloor int = 0
+
+	for i, char := range data {
+		if char == '(' {
+			initialFloor++
+		} else if char == ')' {
+			initialFloor--
+		}
+		if initialFloor == -1 {
+			return &i
+		}
+	}
+
+		return nil
 
 }
 
